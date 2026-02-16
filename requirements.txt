@@ -1,0 +1,8 @@
+faster-whisper
+sounddevice
+numpy
+pyperclip
+pyautogui
+fastapi
+uvicorn[standard]
+jinja2
