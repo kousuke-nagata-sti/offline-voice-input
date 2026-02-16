@@ -1,5 +1,6 @@
 """ローカル音声入力ツール - faster-whisper を使った音声認識 & 自動ペースト"""
 
+import os
 import sys
 import time
 import threading
@@ -14,6 +15,7 @@ MODEL_SIZE = "small"
 DEVICE = "cpu"
 COMPUTE_TYPE = "int8"
 LANGUAGE = "ja"
+MODEL_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models")
 SAMPLE_RATE = 16000
 CHANNELS = 1
 DTYPE = "float32"
@@ -21,7 +23,7 @@ DTYPE = "float32"
 
 def load_model():
     print("[...] モデルをロード中...")
-    model = WhisperModel(MODEL_SIZE, device=DEVICE, compute_type=COMPUTE_TYPE)
+    model = WhisperModel(MODEL_SIZE, device=DEVICE, compute_type=COMPUTE_TYPE, download_root=MODEL_DIR)
     print("[OK] モデルロード完了")
     return model
 

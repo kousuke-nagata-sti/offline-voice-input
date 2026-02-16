@@ -26,6 +26,7 @@ DEVICE = "cpu"
 COMPUTE_TYPE = "int8"
 LANGUAGE = "ja"
 IDLE_TIMEOUT = 300  # 秒 (5分)
+MODEL_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models")
 
 app = FastAPI()
 templates = Jinja2Templates(directory=os.path.join(os.path.dirname(__file__), "templates"))
@@ -57,7 +58,7 @@ def status_msg():
 
 def _load_model():
     """スレッド内でモデルをロード"""
-    return WhisperModel(MODEL_SIZE, device=DEVICE, compute_type=COMPUTE_TYPE)
+    return WhisperModel(MODEL_SIZE, device=DEVICE, compute_type=COMPUTE_TYPE, download_root=MODEL_DIR)
 
 
 def _transcribe(m, path):
